@@ -1,7 +1,6 @@
 const express = require('express');
 const crypto = require('crypto');
 const database = require('./database');
-const { URL } = require('url');
 
 function checkContentType(req, res, next) {
     if (!req.is('application/json')) {
