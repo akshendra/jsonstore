@@ -18,7 +18,7 @@ router.get('/get-link', (req, res) => {
     const hash = crypto.createHash('sha256').update(seed).digest('hex');
 
     const url = new URL(req.get('referer'));
-    return res.send({ link: `${url.protocol}//${url.hostname}/${hash}/` });
+    return res.send({ link: `${process.env.BASE_URL}/${hash}/` });
 });
 
 router.get(/^\/[0-9a-z]{64}/, (req, res) =>
