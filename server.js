@@ -24,7 +24,7 @@ app.get('/about', (req, res) => {
 
 app.use(apiRoutes);
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.send({
     ok: false,
     error: 'Unexpected server error',
