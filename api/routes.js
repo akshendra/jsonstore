@@ -31,7 +31,7 @@ router.post(/^\/[0-9a-z]{64}/, checkContentType, (req, res) =>
         .post(req.path, req.body)
         .then(() => res.status(201).send({ ok: true }))
         .catch(() => res.status(500).send({ ok: false }))
-)
+);
 
 router.put(/^\/[0-9a-z]{64}/, checkContentType, (req, res) =>
     database
@@ -47,4 +47,15 @@ router.delete(/^\/[0-9a-z]{64}/, (req, res) =>
         .catch(() => res.status(500).send({ ok: false }))
 );
 
+router.patch(/^\/[0-9a-z]{64}/, (req, res) =>
+    database
+        .patch(req.path, req.body, req.headers['content-type'])
+        .then(() => res.status(200).send({ ok: true }))
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({ ok: false });
+        }),
+);
+
 module.exports = router;
+
